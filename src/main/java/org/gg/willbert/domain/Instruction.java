@@ -1,4 +1,4 @@
-package java.org.gg.willbert.backend.domain;
+package org.gg.willbert.domain;
 
 //TODO: implement compareTo using order
 public class Instruction {

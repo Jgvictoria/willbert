@@ -1,4 +1,4 @@
-package java.org.gg.willbert.backend.domain;
+package org.gg.willbert.domain;
 
 public class Amount {
 

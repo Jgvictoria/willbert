@@ -1,4 +1,4 @@
-package java.org.gg.willbert;
+package org.gg.willbert;
 
 public class Main {
 
