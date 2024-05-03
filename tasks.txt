@@ -1,5 +1,7 @@
 Find a recipe by name (fetch one that is stored/in memory/database)
-* show name and image
+[X] find recipe
+[ ] trigger from console and pass name
+[ ] print result in console
 
 Add a recipe
 * Name, description, instructions (number_order, descripton),ingridient (product_name, amount)
