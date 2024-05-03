@@ -1,0 +1,26 @@
+Find a recipe by name (fetch one that is stored/in memory/database)
+[X] find recipe
+[ ] trigger from console and pass name
+[ ] print result in console
+
+Add a recipe
+* Name, description, instructions (number_order, descripton),ingridient (product_name, amount)
+
+Present recipe
+* show all attributes
+
+Modify a recipe
+* replace ingridients
+* modify description/name
+* update instructions
+
+Scrape products
+* from willys
+
+Scrape recipe
+* from recipe website (one specific site to begin with)
+
+Order recipe
+* Add products to shopping cart in willys
+** Present any missing products (willys own webpage has this, show that, iframe??)
+* Present final cart for ordering (iframe??)
