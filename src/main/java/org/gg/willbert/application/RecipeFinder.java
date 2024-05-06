@@ -1,4 +1,4 @@
-package org.gg.willbert;
+package org.gg.willbert.application;
 
 import java.util.List;
 

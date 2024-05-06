@@ -1,5 +1,6 @@
 package org.gg.willbert;
 
+import org.gg.willbert.application.RecipeFinder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
