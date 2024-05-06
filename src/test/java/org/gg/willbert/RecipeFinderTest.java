@@ -1,6 +1,7 @@
 package org.gg.willbert;
 
 import org.gg.willbert.application.RecipeFinder;
+import org.gg.willbert.application.RecipeRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -13,7 +14,7 @@ class RecipeFinderTest {
 
     @Test
     void byNameReturnsNoRecipes() {
-        RecipeFinder recipeFinder = new RecipeFinder();
+        RecipeFinder recipeFinder = new RecipeFinder(RecipeRepository.from("inMemory"));
 
         List<String> recipes = recipeFinder.byName("lasagna");
 
@@ -23,7 +24,7 @@ class RecipeFinderTest {
     @ParameterizedTest
     @ValueSource(strings = {"burger", "Burger"})
     void byNameReturnsOneRecipe(String name) {
-        RecipeFinder recipeFinder = new RecipeFinder();
+        RecipeFinder recipeFinder = new RecipeFinder(RecipeRepository.from("inMemory"));
 
         List<String> recipes = recipeFinder.byName(name);
 
@@ -32,7 +33,7 @@ class RecipeFinderTest {
 
     @Test
     void byNameReturnsTwoRecipes() {
-        RecipeFinder recipeFinder = new RecipeFinder();
+        RecipeFinder recipeFinder = new RecipeFinder(RecipeRepository.from("inMemory"));
 
         List<String> recipes = recipeFinder.byName("meat");
 
