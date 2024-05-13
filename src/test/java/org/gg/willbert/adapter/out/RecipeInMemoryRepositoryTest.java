@@ -1,5 +1,6 @@
 package org.gg.willbert.adapter.out;
 
+import org.gg.willbert.application.RecipeFinder;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,7 +11,7 @@ class RecipeInMemoryRepositoryTest {
 
     @Test
     void getAllReturnsCompleteList() {
-        RecipeInMemoryRepository recipeInMemoryRepository = new RecipeInMemoryRepository();
+        RecipeInMemoryRepository recipeInMemoryRepository = RecipeInMemoryRepository.of("burger", "meatballs", "meatloaf");
 
         List<String> all = recipeInMemoryRepository.getAll();
 

@@ -1,5 +1,6 @@
 package org.gg.willbert;
 
+import org.gg.willbert.adapter.out.RecipeInMemoryRepository;
 import org.gg.willbert.application.RecipeFinder;
 import org.gg.willbert.application.RecipeRepository;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ class RecipeFinderTest {
 
     @Test
     void byNameReturnsNoRecipes() {
-        RecipeFinder recipeFinder = new RecipeFinder(RecipeRepository.from("inMemory"));
+        RecipeFinder recipeFinder = new RecipeFinder(RecipeInMemoryRepository.of("burger"));
 
         List<String> recipes = recipeFinder.byName("lasagna");
 
@@ -24,7 +25,7 @@ class RecipeFinderTest {
     @ParameterizedTest
     @ValueSource(strings = {"burger", "Burger"})
     void byNameReturnsOneRecipe(String name) {
-        RecipeFinder recipeFinder = new RecipeFinder(RecipeRepository.from("inMemory"));
+        RecipeFinder recipeFinder = new RecipeFinder(RecipeInMemoryRepository.of("burger"));
 
         List<String> recipes = recipeFinder.byName(name);
 
@@ -33,7 +34,7 @@ class RecipeFinderTest {
 
     @Test
     void byNameReturnsTwoRecipes() {
-        RecipeFinder recipeFinder = new RecipeFinder(RecipeRepository.from("inMemory"));
+        RecipeFinder recipeFinder = new RecipeFinder(RecipeInMemoryRepository.of("burger", "meatballs","meatloaf"));
 
         List<String> recipes = recipeFinder.byName("meat");
 

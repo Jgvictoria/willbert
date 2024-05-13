@@ -12,17 +12,14 @@ public class RecipeInMemoryRepository implements RecipeRepository {
     private List<String> recipeNames = new ArrayList<>();
 
     public RecipeInMemoryRepository() {
-        this.recipeNames.add("burger");
-        this.recipeNames.add("meatballs");
-        this.recipeNames.add("meatloaf");
     }
 
-    public RecipeInMemoryRepository(String recipe) {
-        this.recipeNames.add(recipe);
+    private RecipeInMemoryRepository(String... recipes) {
+        this.recipeNames.addAll(List.of(recipes));
     }
 
-    public static RecipeInMemoryRepository of(String recipe) {
-        return new RecipeInMemoryRepository(recipe);
+    public static RecipeInMemoryRepository of(String... recipes) {
+        return new RecipeInMemoryRepository(recipes);
     }
 
     @Override
