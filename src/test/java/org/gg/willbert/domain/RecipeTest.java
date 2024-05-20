@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.gg.willbert.domain.MeasurementUnit.QUANTITY;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RecipeTest {
@@ -30,10 +31,11 @@ class RecipeTest {
         Recipe recipe = new Recipe("sushi",
                 "",
                 Collections.emptyList(),
-                List.of(new Ingredient("Fish", "1")));
+                List.of(new Ingredient("Fish", new Amount((short) 1, QUANTITY))));
 
         assertThat(recipe.getIngredients()).hasSize(1);
-        assertThat(recipe.getIngredients().getFirst().getName()).isEqualTo("Fish");
-        assertThat(recipe.getIngredients().getFirst().getAmount()).isEqualTo("1");
+        assertThat(recipe.getIngredients().getFirst().getProductName()).isEqualTo("Fish");
+        assertThat(recipe.getIngredients().getFirst().getAmount().getValue()).isEqualTo((short) 1);
+        assertThat(recipe.getIngredients().getFirst().getAmount().getUnit()).isEqualTo(QUANTITY);
     }
 }

@@ -1,7 +1,9 @@
 package org.gg.willbert.application;
 
 import org.gg.willbert.adapter.out.RecipeInMemoryRepository;
+import org.gg.willbert.domain.Amount;
 import org.gg.willbert.domain.Ingredient;
+import org.gg.willbert.domain.MeasurementUnit;
 import org.gg.willbert.domain.Recipe;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,7 +41,9 @@ class RecipeSaverTest {
         Recipe recipe = new Recipe("sushi",
                 "Japanese food",
                 List.of("1. Get fish", "2. Add rice"),
-                List.of(new Ingredient("Fish", "1"), new Ingredient("Rice", "100")));
+                List.of(
+                        new Ingredient("Fish", new Amount((short) 1, MeasurementUnit.QUANTITY)),
+                        new Ingredient("Rice", new Amount((short) 100, MeasurementUnit.GRAM))));
 
         recipeSaver.save(recipe);
 
@@ -52,7 +56,7 @@ class RecipeSaverTest {
                 .containsExactlyInAnyOrder("1. Get fish", "2. Add rice");
         assertThat(foundRecipe.getIngredients())
                 .hasSize(2)
-                .extracting("name")
+                .extracting("productName")
                 .containsExactlyInAnyOrder("Rice", "Fish");
 
     }

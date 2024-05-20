@@ -2,19 +2,23 @@ package org.gg.willbert.domain;
 
 public class Ingredient {
 
-    private String name;
-    private String amount;
+    private String productName;
+    private Amount amount;
 
-    public Ingredient(String name, String amount) {
-        this.name = name;
+    public Ingredient(String productName, Amount amount) {
+        if (amount == null) {
+            throw new IllegalArgumentException("Amount is mandatory");
+        }
+        //TODO: validate name /product
+        this.productName = productName;
         this.amount = amount;
     }
 
-    public String getAmount() {
+    public Amount getAmount() {
         return amount;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 }
