@@ -4,15 +4,15 @@ import org.gg.willbert.application.RecipeFinder;
 
 import java.util.Scanner;
 
-class ConsolePresenter {
+public class ConsolePresenter {
 
     private final RecipeFinder recipeFinder;
 
-    ConsolePresenter(RecipeFinder recipeFinder) {
+    public ConsolePresenter(RecipeFinder recipeFinder) {
         this.recipeFinder = recipeFinder;
     }
 
-    void present() {
+    public void present() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to Willbert!");
