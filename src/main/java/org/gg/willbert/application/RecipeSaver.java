@@ -13,7 +13,7 @@ public class RecipeSaver {
             throw new IllegalArgumentException("Recipe name is mandatory.");
         }
 
-        if(recipeRepository.find(recipeName).isPresent()) {
+        if (recipeRepository.find(recipeName).isPresent()) {
             throw new IllegalArgumentException(
                     "Recipe name %s is already present."
                             .formatted(recipeName));
