@@ -12,18 +12,14 @@ public class Recipe {
     private List<Ingredient> ingredients;
 
     public Recipe(String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Recipe name is required");
-        }
+        requiresName(name);
         this.name = name;
         this.instructions = new ArrayList<>();
         this.ingredients = new ArrayList<>();
     }
 
     public Recipe(String name, String description, List<String> instructions, List<Ingredient> ingredients) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Recipe name is required");
-        }
+        requiresName(name);
         this.name = name;
         this.description = description;
         this.instructions = new ArrayList<>(instructions);
@@ -44,6 +40,12 @@ public class Recipe {
 
     public List<Ingredient> getIngredients() {
         return Collections.unmodifiableList(ingredients);
+    }
+
+    private static void requiresName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Recipe name is required");
+        }
     }
 
     @Override
