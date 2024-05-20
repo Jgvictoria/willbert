@@ -1,6 +1,7 @@
 package org.gg.willbert.application;
 
 import org.gg.willbert.adapter.out.RecipeInMemoryRepository;
+import org.gg.willbert.domain.Recipe;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -20,10 +21,10 @@ class RecipeSaverTest {
 
         recipeSaver.save("pizza");
 
-        List<String> foundRecipes = recipeFinder.byName("pizza");
+        List<Recipe> foundRecipes = recipeFinder.byName("pizza");
         assertThat(foundRecipes)
                 .hasSize(1)
-                .containsExactlyInAnyOrder("pizza");
+                .containsExactlyInAnyOrder(new Recipe("pizza"));
     }
 
     @ParameterizedTest

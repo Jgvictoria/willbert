@@ -1,13 +1,14 @@
 package org.gg.willbert.application;
 
 import org.gg.willbert.adapter.out.RecipeInMemoryRepository;
+import org.gg.willbert.domain.Recipe;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface RecipeRepository {
 
-    List<String> getAll();
+    List<Recipe> getAll();
 
     void save(String recipeName);
 

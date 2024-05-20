@@ -1,6 +1,7 @@
 package org.gg.willbert.application;
 
 import org.gg.willbert.adapter.out.RecipeInMemoryRepository;
+import org.gg.willbert.domain.Recipe;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +16,7 @@ class RecipeFinderTest {
     void byNameReturnsNoRecipes() {
         RecipeFinder recipeFinder = new RecipeFinder(RecipeInMemoryRepository.of("burger"));
 
-        List<String> recipes = recipeFinder.byName("lasagna");
+        List<Recipe> recipes = recipeFinder.byName("lasagna");
 
         assertThat(recipes).isEmpty();
     }
@@ -25,7 +26,7 @@ class RecipeFinderTest {
     void byNameReturnsOneRecipe(String name) {
         RecipeFinder recipeFinder = new RecipeFinder(RecipeInMemoryRepository.of("burger"));
 
-        List<String> recipes = recipeFinder.byName(name);
+        List<Recipe> recipes = recipeFinder.byName(name);
 
         assertThat(recipes).hasSize(1);
     }
@@ -34,10 +35,12 @@ class RecipeFinderTest {
     void byNameReturnsTwoRecipes() {
         RecipeFinder recipeFinder = new RecipeFinder(RecipeInMemoryRepository.of("burger", "meatballs", "meatloaf"));
 
-        List<String> recipes = recipeFinder.byName("meat");
+        List<Recipe> recipes = recipeFinder.byName("meat");
 
         assertThat(recipes)
                 .hasSize(2)
-                .containsExactlyInAnyOrder("meatballs", "meatloaf");
+                .containsExactlyInAnyOrder(
+                        new Recipe("meatballs"),
+                        new Recipe("meatloaf"));
     }
 }
