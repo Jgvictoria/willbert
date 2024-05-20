@@ -9,7 +9,7 @@ public class Recipe {
     private String name;
     private String description;
     private List<String> instructions;
-    private List<String> ingredients;
+    private List<Ingredient> ingredients;
 
     public Recipe(String name) {
         if (name == null || name.isEmpty()) {
@@ -20,7 +20,7 @@ public class Recipe {
         this.ingredients = new ArrayList<>();
     }
 
-    public Recipe(String name, String description, List<String> instructions, List<String> ingredients) {
+    public Recipe(String name, String description, List<String> instructions, List<Ingredient> ingredients) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Recipe name is required");
         }
@@ -42,7 +42,7 @@ public class Recipe {
         return Collections.unmodifiableList(instructions);
     }
 
-    public List<String> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return Collections.unmodifiableList(ingredients);
     }
 

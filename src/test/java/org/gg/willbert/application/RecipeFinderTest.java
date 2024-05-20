@@ -39,8 +39,7 @@ class RecipeFinderTest {
 
         assertThat(recipes)
                 .hasSize(2)
-                .containsExactlyInAnyOrder(
-                        new Recipe("meatballs"),
-                        new Recipe("meatloaf"));
+                .extracting("name")
+                .containsExactlyInAnyOrder("meatballs", "meatloaf");
     }
 }
