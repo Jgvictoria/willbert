@@ -6,9 +6,8 @@ public class Amount {
     private MeasurementUnit unit;
 
     public Amount(short value, MeasurementUnit unit) {
-        if (value == 0 || value < 0) {
-            throw new IllegalArgumentException("Value must be larger than 0");
-        }
+        requiresValueBiggerThanZero(value);
+        requiresUnit(unit);
         this.value = value;
         this.unit = unit;
     }
@@ -19,5 +18,17 @@ public class Amount {
 
     public MeasurementUnit getUnit() {
         return unit;
+    }
+
+    private static void requiresValueBiggerThanZero(short value) {
+        if (value == 0 || value < 0) {
+            throw new IllegalArgumentException("Value must be bigger than 0");
+        }
+    }
+
+    private static void requiresUnit(MeasurementUnit unit) {
+        if (unit == null) {
+            throw new IllegalArgumentException("Measurement unit is mandatory");
+        }
     }
 }
