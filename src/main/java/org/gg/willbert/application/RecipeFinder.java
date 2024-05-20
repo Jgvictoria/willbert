@@ -1,5 +1,7 @@
 package org.gg.willbert.application;
 
+import org.gg.willbert.domain.Recipe;
+
 import java.util.List;
 
 public class RecipeFinder {
@@ -10,11 +12,11 @@ public class RecipeFinder {
         this.recipeRepository = recipeRepository;
     }
 
-    public List<String> byName(String name) {
+    public List<Recipe> byName(String name) {
         String normalizedName = name.toLowerCase();
 
         return recipeRepository.getAll().stream()
-                .filter(n -> n.contains(normalizedName))
+                .filter(r -> r.getName().contains(normalizedName))
                 .toList();
     }
 }

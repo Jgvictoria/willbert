@@ -4,7 +4,8 @@ Find a recipe by name (fetch one that is stored/in memory/database)
 [X] print result in console
 
 Add a recipe
-* Name, description, instructions (number_order, descripton),ingridient (product_name, amount)
+[X] Save recipe (Name, description, instructions (number_order, descripton),ingridient (product_name, amount))
+[ ] Enter recipe through console by providing a json file
 
 Present recipe
 * show all attributes
