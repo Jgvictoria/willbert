@@ -10,6 +10,8 @@ public interface RecipeRepository {
 
     List<Recipe> getAll();
 
+    Optional<String> find(String recipeName);
+
     void save(String recipeName);
 
     void save(Recipe recipe);
@@ -21,6 +23,4 @@ public interface RecipeRepository {
 
         throw new IllegalArgumentException("Unhandled RecipeRepository type...");
     }
-
-    Optional<String> find(String recipeName);
 }
