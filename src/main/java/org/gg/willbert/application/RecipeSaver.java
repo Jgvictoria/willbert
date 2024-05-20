@@ -1,5 +1,7 @@
 package org.gg.willbert.application;
 
+import org.gg.willbert.domain.Recipe;
+
 public class RecipeSaver {
 
     private final RecipeRepository recipeRepository;
@@ -20,5 +22,19 @@ public class RecipeSaver {
         }
 
         recipeRepository.save(recipeName);
+    }
+
+    public void save(Recipe recipe) {
+        if (recipe == null) {
+            throw new IllegalArgumentException("Invalid null recipe");
+        }
+
+        if (recipeRepository.find(recipe.getName()).isPresent()) {
+            throw new IllegalArgumentException(
+                    "Recipe name %s is already present."
+                            .formatted(recipe.getName()));
+        }
+
+        recipeRepository.save(recipe);
     }
 }

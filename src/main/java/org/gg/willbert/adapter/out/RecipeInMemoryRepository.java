@@ -34,6 +34,11 @@ public class RecipeInMemoryRepository implements RecipeRepository {
     }
 
     @Override
+    public void save(Recipe recipe) {
+        recipes.add(recipe);
+    }
+
+    @Override
     public Optional<String> find(String recipeName) {
         return recipes.stream()
                 .map(Recipe::getName)

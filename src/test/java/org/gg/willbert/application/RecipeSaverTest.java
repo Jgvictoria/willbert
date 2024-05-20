@@ -18,13 +18,41 @@ class RecipeSaverTest {
         RecipeRepository inMemoryRepository = RecipeRepository.from("inMemory");
         RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
         RecipeFinder recipeFinder = new RecipeFinder(inMemoryRepository);
+        Recipe recipe = new Recipe("pizza");
 
-        recipeSaver.save("pizza");
+        recipeSaver.save(recipe);
 
         List<Recipe> foundRecipes = recipeFinder.byName("pizza");
-        assertThat(foundRecipes)
-                .hasSize(1)
-                .containsExactlyInAnyOrder(new Recipe("pizza"));
+        assertThat(foundRecipes).hasSize(1);
+        Recipe foundRecipe = foundRecipes.getFirst();
+        assertThat(foundRecipe.getIngredients()).isEmpty();
+        assertThat(foundRecipe.getDescription()).isNull();
+        assertThat(foundRecipe.getInstructions()).isEmpty();
+    }
+
+    @Test
+    void successfullySaveFullRecipe() {
+        RecipeRepository inMemoryRepository = RecipeRepository.from("inMemory");
+        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+        RecipeFinder recipeFinder = new RecipeFinder(inMemoryRepository);
+        Recipe recipe = new Recipe("sushi",
+                "Japanese food",
+                List.of("1. Get fish", "2. Add rice"),
+                List.of("Rice", "Fish"));
+
+        recipeSaver.save(recipe);
+
+        List<Recipe> foundRecipes = recipeFinder.byName("sushi");
+        assertThat(foundRecipes).hasSize(1);
+        Recipe foundRecipe = foundRecipes.getFirst();
+        assertThat(foundRecipe.getDescription()).isEqualTo("Japanese food");
+        assertThat(foundRecipe.getInstructions())
+                .hasSize(2)
+                .containsExactlyInAnyOrder("1. Get fish", "2. Add rice");
+        assertThat(foundRecipe.getIngredients())
+                .hasSize(2)
+                .containsExactlyInAnyOrder("Rice", "Fish");
+
     }
 
     @ParameterizedTest
@@ -42,5 +70,23 @@ class RecipeSaverTest {
         RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
 
         assertThrows(IllegalArgumentException.class, () -> recipeSaver.save("pizza"));
+    }
+
+    @Test
+    void shouldRejectNullFullRecipe() {
+        Recipe recipe = null;
+        RecipeRepository inMemoryRepository = RecipeInMemoryRepository.of("pizza");
+        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+
+        assertThrows(IllegalArgumentException.class, () -> recipeSaver.save(recipe));
+
+    }
+
+    @Test
+    void shouldRejectDuplicateFullRecipe() {
+        RecipeRepository inMemoryRepository = RecipeInMemoryRepository.of("pizza");
+        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+
+        assertThrows(IllegalArgumentException.class, () -> recipeSaver.save(new Recipe("pizza")));
     }
 }

@@ -12,6 +12,8 @@ public interface RecipeRepository {
 
     void save(String recipeName);
 
+    void save(Recipe recipe);
+
     static RecipeRepository from(String type) {
         if (type.equals("inMemory")) {
             return new RecipeInMemoryRepository();

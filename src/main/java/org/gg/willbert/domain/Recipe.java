@@ -1,15 +1,49 @@
 package org.gg.willbert.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Recipe {
 
     private String name;
+    private String description;
+    private List<String> instructions;
+    private List<String> ingredients;
 
     public Recipe(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Recipe name is required");
+        }
         this.name = name;
+        this.instructions = new ArrayList<>();
+        this.ingredients = new ArrayList<>();
+    }
+
+    public Recipe(String name, String description, List<String> instructions, List<String> ingredients) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Recipe name is required");
+        }
+        this.name = name;
+        this.description = description;
+        this.instructions = new ArrayList<>(instructions);
+        this.ingredients = new ArrayList<>(ingredients);
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<String> getInstructions() {
+        return Collections.unmodifiableList(instructions);
+    }
+
+    public List<String> getIngredients() {
+        return Collections.unmodifiableList(ingredients);
     }
 
     @Override
