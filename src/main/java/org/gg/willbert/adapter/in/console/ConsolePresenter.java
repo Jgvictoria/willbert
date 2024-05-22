@@ -1,15 +1,15 @@
 package org.gg.willbert.adapter.in.console;
 
-import org.gg.willbert.application.RecipeFinder;
+import org.gg.willbert.application.RecipeRepository;
 
 import java.util.Scanner;
 
 public class ConsolePresenter {
 
-    private final RecipeFinder recipeFinder;
+    private final RecipeRepository recipeRepository;
 
-    public ConsolePresenter(RecipeFinder recipeFinder) {
-        this.recipeFinder = recipeFinder;
+    public ConsolePresenter(RecipeRepository recipeRepository) {
+        this.recipeRepository = recipeRepository;
     }
 
     public void present() {
@@ -24,7 +24,7 @@ public class ConsolePresenter {
             System.out.println("Enter search term...");
             String searchTerm = scanner.nextLine();
 
-            System.out.println(recipeFinder.byName(searchTerm));
+            System.out.println(recipeRepository.getByNameContains(searchTerm));
 
         }
 

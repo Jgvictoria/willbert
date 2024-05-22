@@ -10,6 +10,8 @@ public interface RecipeRepository {
 
     List<Recipe> getAll();
 
+    List<Recipe> getByNameContains(String affix);
+
     Optional<String> find(String recipeName);
 
     void save(String recipeName);

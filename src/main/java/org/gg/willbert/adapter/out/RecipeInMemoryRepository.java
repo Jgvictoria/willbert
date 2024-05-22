@@ -29,6 +29,15 @@ public class RecipeInMemoryRepository implements RecipeRepository {
     }
 
     @Override
+    public List<Recipe> getByNameContains(String affix) {
+        String normalizedName = affix.toLowerCase();
+
+        return recipes.stream()
+                .filter(r -> r.getName().contains(normalizedName))
+                .toList();
+    }
+
+    @Override
     public void save(String recipeName) {
         recipes.add(new Recipe(recipeName));
     }

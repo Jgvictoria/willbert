@@ -20,12 +20,11 @@ class RecipeSaverTest {
     void successfullySaveRecipe() {
         RecipeRepository inMemoryRepository = RecipeRepository.from("inMemory");
         RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
-        RecipeFinder recipeFinder = new RecipeFinder(inMemoryRepository);
         Recipe recipe = new Recipe("pizza");
 
         recipeSaver.save(recipe);
 
-        List<Recipe> foundRecipes = recipeFinder.byName("pizza");
+        List<Recipe> foundRecipes = inMemoryRepository.getByNameContains("pizza");
         assertThat(foundRecipes).hasSize(1);
         Recipe foundRecipe = foundRecipes.getFirst();
         assertThat(foundRecipe.getIngredients()).isEmpty();
@@ -37,7 +36,6 @@ class RecipeSaverTest {
     void successfullySaveFullRecipe() {
         RecipeRepository inMemoryRepository = RecipeRepository.from("inMemory");
         RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
-        RecipeFinder recipeFinder = new RecipeFinder(inMemoryRepository);
         Recipe recipe = new Recipe("sushi",
                 "Japanese food",
                 List.of("1. Get fish", "2. Add rice"),
@@ -47,7 +45,7 @@ class RecipeSaverTest {
 
         recipeSaver.save(recipe);
 
-        List<Recipe> foundRecipes = recipeFinder.byName("sushi");
+        List<Recipe> foundRecipes = inMemoryRepository.getByNameContains("sushi");
         assertThat(foundRecipes).hasSize(1);
         Recipe foundRecipe = foundRecipes.getFirst();
         assertThat(foundRecipe.getDescription()).isEqualTo("Japanese food");
