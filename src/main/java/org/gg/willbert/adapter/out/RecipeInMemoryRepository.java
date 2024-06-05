@@ -23,6 +23,10 @@ public class RecipeInMemoryRepository implements RecipeRepository {
         return new RecipeInMemoryRepository(recipes);
     }
 
+    public static RecipeInMemoryRepository empty() {
+        return new RecipeInMemoryRepository();
+    }
+
     @Override
     public List<Recipe> getAll() {
         return Collections.unmodifiableList(recipes);

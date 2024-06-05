@@ -93,4 +93,58 @@ class RecipeSaverTest {
 
         assertThrows(IllegalArgumentException.class, () -> recipeSaver.save(new Recipe("pizza")));
     }
+
+    @Test
+    void shouldSaveTwoRecipes() {
+        RecipeRepository inMemoryRepository = RecipeInMemoryRepository.empty();
+        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+
+        Recipe sushi = new Recipe("sushi",
+                "Japanese food",
+                List.of("1. Get fish", "2. Add rice"),
+                List.of(
+                        new Ingredient("Fish", new Amount((short) 1, MeasurementUnit.QUANTITY)),
+                        new Ingredient("Rice", new Amount((short) 100, MeasurementUnit.GRAM))));
+
+        Recipe pizza = new Recipe("pizza",
+                "Italian food",
+                List.of("1. Get cheese", "2. Add tomatoes"),
+                List.of(
+                        new Ingredient("Cheese", new Amount((short) 1, MeasurementUnit.QUANTITY)),
+                        new Ingredient("Tomato", new Amount((short) 100, MeasurementUnit.GRAM))));
+
+        recipeSaver.saveAll(List.of(sushi, pizza));
+
+        assertThat(inMemoryRepository.find("pizza")).isPresent();
+        assertThat(inMemoryRepository.find("sushi")).isPresent();
+
+    }
+
+    @Test
+    void shouldSilentlySkipDuplicateRecipes() {
+        RecipeRepository inMemoryRepository = RecipeInMemoryRepository.empty();
+        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+
+        Recipe sushi = new Recipe("sushi",
+                "Japanese food",
+                List.of("1. Get fish", "2. Add rice"),
+                List.of(
+                        new Ingredient("Fish", new Amount((short) 1, MeasurementUnit.QUANTITY)),
+                        new Ingredient("Rice", new Amount((short) 100, MeasurementUnit.GRAM))));
+
+        Recipe sushiAgain = new Recipe("sushi",
+                "Japanese food",
+                List.of("1. Get fish", "2. Add rice", "3. Add fish to rice"),
+                List.of(
+                        new Ingredient("Fish", new Amount((short) 1, MeasurementUnit.QUANTITY)),
+                        new Ingredient("Rice", new Amount((short) 100, MeasurementUnit.GRAM))));
+
+        SaveRecipesResult result = recipeSaver.saveAll(List.of(sushi, sushiAgain));
+
+        assertThat(result.skippedRecipes()).hasSize(1);
+
+        assertThat(inMemoryRepository.getAll())
+                .hasSize(1)
+                .containsExactly(sushi);
+    }
 }

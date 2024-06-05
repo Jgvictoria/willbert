@@ -2,6 +2,8 @@ package org.gg.willbert.application;
 
 import org.gg.willbert.domain.Recipe;
 
+import java.util.List;
+
 public class RecipeSaver {
 
     private final RecipeRepository recipeRepository;
@@ -36,5 +38,19 @@ public class RecipeSaver {
         }
 
         recipeRepository.save(recipe);
+    }
+
+    public SaveRecipesResult saveAll(List<Recipe> recipes) {
+        SaveRecipesResult saveRecipesResult = new SaveRecipesResult();
+
+        for (Recipe recipe : recipes) {
+            try {
+                this.save(recipe);
+            } catch (IllegalArgumentException e) {
+                saveRecipesResult.addSkippedRecipe(recipe);
+                System.out.printf("Skipping duplicate recipe with name %s%n", recipe.getName());
+            }
+        }
+        return saveRecipesResult;
     }
 }
