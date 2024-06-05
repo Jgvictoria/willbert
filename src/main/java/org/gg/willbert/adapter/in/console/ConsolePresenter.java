@@ -1,5 +1,6 @@
 package org.gg.willbert.adapter.in.console;
 
+import org.gg.willbert.adapter.in.RecipeImporter;
 import org.gg.willbert.application.RecipeRepository;
 
 import java.util.Scanner;
@@ -16,7 +17,9 @@ public class ConsolePresenter {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to Willbert!");
-        System.out.println("Find recipe (f) or Quit (q)");
+        System.out.println("Find recipe (f)");
+        System.out.println("Import recipes from file (i)");
+        System.out.println("Quit (q)");
 
         String option = scanner.nextLine();
 
@@ -26,9 +29,19 @@ public class ConsolePresenter {
 
             System.out.println(recipeRepository.getByNameContains(searchTerm));
 
+        } else if (option.equals("i")) {
+            System.out.println("Enter filename (default, recipes.json)...");
+            String filename = scanner.nextLine();
+            if (filename.isEmpty()) {
+                filename = "recipes.json";
+            }
+
+            RecipeImporter recipeImporter = new RecipeImporter();
+            recipeImporter.importRecipes(filename);
         }
 
         scanner.close();
     }
+
 
 }
