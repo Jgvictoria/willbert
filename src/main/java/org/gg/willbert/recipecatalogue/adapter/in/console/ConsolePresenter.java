@@ -1,7 +1,7 @@
-package org.gg.willbert.adapter.in.console;
+package org.gg.willbert.recipecatalogue.adapter.in.console;
 
-import org.gg.willbert.adapter.in.RecipeImporter;
-import org.gg.willbert.application.RecipeRepository;
+import org.gg.willbert.recipecatalogue.adapter.in.RecipeImporter;
+import org.gg.willbert.recipecatalogue.application.RecipeRepository;
 
 import java.util.Scanner;
 

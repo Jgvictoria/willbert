@@ -1,6 +1,6 @@
-package org.gg.willbert.adapter.out;
+package org.gg.willbert.recipecatalogue.adapter.out;
 
-import org.gg.willbert.domain.Recipe;
+import org.gg.willbert.recipecatalogue.domain.Recipe;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

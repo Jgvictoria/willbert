@@ -1,4 +1,4 @@
-package org.gg.willbert.domain;
+package org.gg.willbert.recipecatalogue.domain;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.gg.willbert.domain.MeasurementUnit.QUANTITY;
+import static org.gg.willbert.recipecatalogue.domain.MeasurementUnit.QUANTITY;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RecipeTest {

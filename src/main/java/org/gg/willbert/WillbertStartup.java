@@ -1,7 +1,7 @@
 package org.gg.willbert;
 
-import org.gg.willbert.adapter.in.console.ConsolePresenter;
-import org.gg.willbert.application.RecipeRepository;
+import org.gg.willbert.recipecatalogue.adapter.in.console.ConsolePresenter;
+import org.gg.willbert.recipecatalogue.application.RecipeRepository;
 
 public class WillbertStartup {
 

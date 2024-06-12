@@ -1,10 +1,10 @@
-package org.gg.willbert.application;
+package org.gg.willbert.recipecatalogue.application;
 
-import org.gg.willbert.adapter.out.RecipeInMemoryRepository;
-import org.gg.willbert.domain.Amount;
-import org.gg.willbert.domain.Ingredient;
-import org.gg.willbert.domain.MeasurementUnit;
-import org.gg.willbert.domain.Recipe;
+import org.gg.willbert.recipecatalogue.adapter.out.RecipeInMemoryRepository;
+import org.gg.willbert.recipecatalogue.domain.Amount;
+import org.gg.willbert.recipecatalogue.domain.Ingredient;
+import org.gg.willbert.recipecatalogue.domain.MeasurementUnit;
+import org.gg.willbert.recipecatalogue.domain.Recipe;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;

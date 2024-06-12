@@ -1,4 +1,4 @@
-package org.gg.willbert.adapter.in;
+package org.gg.willbert.recipecatalogue.adapter.in;
 
 import org.junit.jupiter.api.Test;
 

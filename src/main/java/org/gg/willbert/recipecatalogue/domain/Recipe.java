@@ -1,4 +1,4 @@
-package org.gg.willbert.domain;
+package org.gg.willbert.recipecatalogue.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;

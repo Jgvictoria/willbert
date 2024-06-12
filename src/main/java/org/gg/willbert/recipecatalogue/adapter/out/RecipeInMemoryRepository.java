@@ -1,7 +1,7 @@
-package org.gg.willbert.adapter.out;
+package org.gg.willbert.recipecatalogue.adapter.out;
 
-import org.gg.willbert.application.RecipeRepository;
-import org.gg.willbert.domain.Recipe;
+import org.gg.willbert.recipecatalogue.application.RecipeRepository;
+import org.gg.willbert.recipecatalogue.domain.Recipe;
 
 import java.util.*;
 
