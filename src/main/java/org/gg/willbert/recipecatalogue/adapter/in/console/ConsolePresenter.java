@@ -36,7 +36,7 @@ public class ConsolePresenter {
                 filename = "recipes.json";
             }
 
-            RecipeImporter recipeImporter = new RecipeImporter();
+            RecipeImporter recipeImporter = new RecipeImporter(recipeRepository);
             recipeImporter.importRecipes(filename);
         }
 

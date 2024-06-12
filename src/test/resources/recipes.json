@@ -43,35 +43,35 @@
       {
         "name": "basilika",
         "amount": {
-          "unit": "mililiter",
+          "unit": "MILLILITER",
           "value": 5
         }
       },
       {
         "name": "salt",
         "amount": {
-          "unit": "mililiter",
+          "unit": "MILLILITER",
           "value": 5
         }
       },
       {
         "name": "vatten",
         "amount": {
-          "unit": "mililiter",
+          "unit": "MILLILITER",
           "value": 100
         }
       },
       {
         "name": "tomatpure",
         "amount": {
-          "unit": "mililiter",
+          "unit": "MILLILITER",
           "value": 15
         }
       },
       {
         "name": "balsamvinäger",
         "amount": {
-          "unit": "mililiter",
+          "unit": "MILLILITER",
           "value": 8
         }
       },
@@ -85,7 +85,7 @@
       {
         "name": "creme fraiche",
         "amount": {
-          "unit": "mililiter",
+          "unit": "MILLILITER",
           "value": 300
         }
       },
@@ -106,7 +106,7 @@
       {
         "name": "olivolja",
         "amount": {
-          "unit": "mililiter",
+          "unit": "MILLILITER",
           "value": 30
         }
       }
