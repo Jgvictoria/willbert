@@ -3,12 +3,13 @@ package org.gg.willbert.recipecatalogue.application;
 import org.gg.willbert.recipecatalogue.domain.Recipe;
 
 import java.util.List;
+import java.util.Optional;
 
-public class RecipeSaver {
+public class RecipeService {
 
     private final RecipeRepository recipeRepository;
 
-    public RecipeSaver(RecipeRepository recipeRepository) {
+    public RecipeService(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
 
@@ -52,5 +53,17 @@ public class RecipeSaver {
             }
         }
         return saveRecipesResult;
+    }
+
+    public List<Recipe> getAll() {
+        return recipeRepository.getAll();
+    }
+
+    public List<Recipe> getByNameContains(String affix) {
+        return recipeRepository.getByNameContains(affix);
+    }
+
+    public Optional<String> find(String recipeName) {
+        return recipeRepository.find(recipeName);
     }
 }

@@ -14,15 +14,15 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class RecipeSaverTest {
+class RecipeServiceTest {
 
     @Test
     void successfullySaveRecipe() {
         RecipeRepository inMemoryRepository = RecipeRepository.from("inMemory");
-        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+        RecipeService recipeService = new RecipeService(inMemoryRepository);
         Recipe recipe = new Recipe("pizza");
 
-        recipeSaver.save(recipe);
+        recipeService.save(recipe);
 
         List<Recipe> foundRecipes = inMemoryRepository.getByNameContains("pizza");
         assertThat(foundRecipes).hasSize(1);
@@ -35,7 +35,7 @@ class RecipeSaverTest {
     @Test
     void successfullySaveFullRecipe() {
         RecipeRepository inMemoryRepository = RecipeRepository.from("inMemory");
-        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+        RecipeService recipeService = new RecipeService(inMemoryRepository);
         Recipe recipe = new Recipe("sushi",
                 "Japanese food",
                 List.of("1. Get fish", "2. Add rice"),
@@ -43,7 +43,7 @@ class RecipeSaverTest {
                         new Ingredient("Fish", new Amount((short) 1, MeasurementUnit.QUANTITY)),
                         new Ingredient("Rice", new Amount((short) 100, MeasurementUnit.GRAM))));
 
-        recipeSaver.save(recipe);
+        recipeService.save(recipe);
 
         List<Recipe> foundRecipes = inMemoryRepository.getByNameContains("sushi");
         assertThat(foundRecipes).hasSize(1);
@@ -63,41 +63,41 @@ class RecipeSaverTest {
     @NullAndEmptySource
     void shouldNotSaveWhenMissingName(String recipeName) {
         RecipeRepository inMemoryRepository = RecipeRepository.from("inMemory");
-        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+        RecipeService recipeService = new RecipeService(inMemoryRepository);
 
-        assertThrows(IllegalArgumentException.class, () -> recipeSaver.save(recipeName));
+        assertThrows(IllegalArgumentException.class, () -> recipeService.save(recipeName));
     }
 
     @Test
     void shouldRejectDuplicateRecipe() {
         RecipeRepository inMemoryRepository = RecipeInMemoryRepository.of("pizza");
-        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+        RecipeService recipeService = new RecipeService(inMemoryRepository);
 
-        assertThrows(IllegalArgumentException.class, () -> recipeSaver.save("pizza"));
+        assertThrows(IllegalArgumentException.class, () -> recipeService.save("pizza"));
     }
 
     @Test
     void shouldRejectNullFullRecipe() {
         Recipe recipe = null;
         RecipeRepository inMemoryRepository = RecipeInMemoryRepository.of("pizza");
-        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+        RecipeService recipeService = new RecipeService(inMemoryRepository);
 
-        assertThrows(IllegalArgumentException.class, () -> recipeSaver.save(recipe));
+        assertThrows(IllegalArgumentException.class, () -> recipeService.save(recipe));
 
     }
 
     @Test
     void shouldRejectDuplicateFullRecipe() {
         RecipeRepository inMemoryRepository = RecipeInMemoryRepository.of("pizza");
-        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+        RecipeService recipeService = new RecipeService(inMemoryRepository);
 
-        assertThrows(IllegalArgumentException.class, () -> recipeSaver.save(new Recipe("pizza")));
+        assertThrows(IllegalArgumentException.class, () -> recipeService.save(new Recipe("pizza")));
     }
 
     @Test
     void shouldSaveTwoRecipes() {
         RecipeRepository inMemoryRepository = RecipeInMemoryRepository.empty();
-        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+        RecipeService recipeService = new RecipeService(inMemoryRepository);
 
         Recipe sushi = new Recipe("sushi",
                 "Japanese food",
@@ -113,7 +113,7 @@ class RecipeSaverTest {
                         new Ingredient("Cheese", new Amount((short) 1, MeasurementUnit.QUANTITY)),
                         new Ingredient("Tomato", new Amount((short) 100, MeasurementUnit.GRAM))));
 
-        recipeSaver.saveAll(List.of(sushi, pizza));
+        recipeService.saveAll(List.of(sushi, pizza));
 
         assertThat(inMemoryRepository.find("pizza")).isPresent();
         assertThat(inMemoryRepository.find("sushi")).isPresent();
@@ -123,7 +123,7 @@ class RecipeSaverTest {
     @Test
     void shouldSilentlySkipDuplicateRecipes() {
         RecipeRepository inMemoryRepository = RecipeInMemoryRepository.empty();
-        RecipeSaver recipeSaver = new RecipeSaver(inMemoryRepository);
+        RecipeService recipeService = new RecipeService(inMemoryRepository);
 
         Recipe sushi = new Recipe("sushi",
                 "Japanese food",
@@ -139,7 +139,7 @@ class RecipeSaverTest {
                         new Ingredient("Fish", new Amount((short) 1, MeasurementUnit.QUANTITY)),
                         new Ingredient("Rice", new Amount((short) 100, MeasurementUnit.GRAM))));
 
-        SaveRecipesResult result = recipeSaver.saveAll(List.of(sushi, sushiAgain));
+        SaveRecipesResult result = recipeService.saveAll(List.of(sushi, sushiAgain));
 
         assertThat(result.skippedRecipes()).hasSize(1);
 

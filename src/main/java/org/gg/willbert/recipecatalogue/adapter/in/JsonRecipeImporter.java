@@ -2,7 +2,7 @@ package org.gg.willbert.recipecatalogue.adapter.in;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.gg.willbert.recipecatalogue.application.RecipeRepository;
+import org.gg.willbert.recipecatalogue.application.RecipeService;
 import org.gg.willbert.recipecatalogue.domain.Recipe;
 
 import java.io.IOException;
@@ -14,12 +14,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class RecipeImporter {
+public class JsonRecipeImporter {
 
-    private final RecipeRepository recipeRepository;
+    private final RecipeService recipeService;
 
-    public RecipeImporter(RecipeRepository recipeRepository) {
-        this.recipeRepository = recipeRepository;
+    public JsonRecipeImporter(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     public void importRecipes(String filename) {
@@ -27,7 +27,7 @@ public class RecipeImporter {
 
         if (jsonRecipe.isPresent()) {
             List<Recipe> recipes = parseJson(jsonRecipe.get());
-            recipeRepository.save(recipes.getFirst());
+            recipeService.save(recipes.getFirst());
         }
     }
 
@@ -44,7 +44,7 @@ public class RecipeImporter {
     }
 
     private Optional<Path> getFromDefaultLocation(String filename) {
-        URL resource = RecipeImporter.class.getClassLoader().getResource(filename);
+        URL resource = JsonRecipeImporter.class.getClassLoader().getResource(filename);
 
         if (resource == null) {
             return Optional.empty();

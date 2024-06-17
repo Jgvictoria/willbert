@@ -1,16 +1,16 @@
 package org.gg.willbert.recipecatalogue.adapter.in.console;
 
-import org.gg.willbert.recipecatalogue.adapter.in.RecipeImporter;
-import org.gg.willbert.recipecatalogue.application.RecipeRepository;
+import org.gg.willbert.recipecatalogue.adapter.in.JsonRecipeImporter;
+import org.gg.willbert.recipecatalogue.application.RecipeService;
 
 import java.util.Scanner;
 
 public class ConsolePresenter {
 
-    private final RecipeRepository recipeRepository;
+    private final RecipeService recipeService;
 
-    public ConsolePresenter(RecipeRepository recipeRepository) {
-        this.recipeRepository = recipeRepository;
+    public ConsolePresenter(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     public void present() {
@@ -27,7 +27,7 @@ public class ConsolePresenter {
             System.out.println("Enter search term...");
             String searchTerm = scanner.nextLine();
 
-            System.out.println(recipeRepository.getByNameContains(searchTerm));
+            System.out.println(recipeService.getByNameContains(searchTerm));
 
         } else if (option.equals("i")) {
             System.out.println("Enter filename (default, recipes.json)...");
@@ -36,8 +36,8 @@ public class ConsolePresenter {
                 filename = "recipes.json";
             }
 
-            RecipeImporter recipeImporter = new RecipeImporter(recipeRepository);
-            recipeImporter.importRecipes(filename);
+            JsonRecipeImporter jsonRecipeImporter = new JsonRecipeImporter(recipeService);
+            jsonRecipeImporter.importRecipes(filename);
         }
 
         scanner.close();
