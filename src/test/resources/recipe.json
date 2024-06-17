@@ -1,0 +1,115 @@
+[
+  {
+    "name": "JG Italiensk lasagne",
+    "description": "Trevlig lasagne utan béchamel sås",
+    "instructions": [
+      "1. Sätt ugnen på 200°C",
+      "2. Hacka lök, vitlök och stek tillsammans med färsen i olja i minst 5 minuter",
+      "3. Tärna tomaterna och tillsätt dem tillsammans med basilika, salt, peppar, vatten, tomatpuré och balsamvinäger",
+      "4. Låt det sjuda medan du gör pestosåsen",
+      "5. Blanda pesto, crème fraiche, vatten, salt och peppar i en skål",
+      "6. I en ugnssäker form, varva pestosåsen, lasagneplattor, färsen och ost. Upprepa i minst 3 lager",
+      "7. Ställ formen i ugnen, 30 minuter"
+    ],
+    "ingredients": [
+      {
+        "name": "rödlök",
+        "amount": {
+          "unit": "quantity",
+          "value": 1
+        }
+      },
+      {
+        "name": "vitlöksklyfa",
+        "amount": {
+          "unit": "quantity",
+          "value": 2
+        }
+      },
+      {
+        "name": "färs",
+        "amount": {
+          "unit": "gram",
+          "value": 500
+        }
+      },
+      {
+        "name": "tomat",
+        "amount": {
+          "unit": "quantity",
+          "value": 2
+        }
+      },
+      {
+        "name": "basilika",
+        "amount": {
+          "unit": "MILLILITER",
+          "value": 5
+        }
+      },
+      {
+        "name": "salt",
+        "amount": {
+          "unit": "MILLILITER",
+          "value": 5
+        }
+      },
+      {
+        "name": "vatten",
+        "amount": {
+          "unit": "MILLILITER",
+          "value": 100
+        }
+      },
+      {
+        "name": "tomatpure",
+        "amount": {
+          "unit": "MILLILITER",
+          "value": 15
+        }
+      },
+      {
+        "name": "balsamvinäger",
+        "amount": {
+          "unit": "MILLILITER",
+          "value": 8
+        }
+      },
+      {
+        "name": "pesto",
+        "amount": {
+          "unit": "gram",
+          "value": 130
+        }
+      },
+      {
+        "name": "creme fraiche",
+        "amount": {
+          "unit": "MILLILITER",
+          "value": 300
+        }
+      },
+      {
+        "name": "lasagneplattor",
+        "amount": {
+          "unit": "quantity",
+          "value": "12"
+        }
+      },
+      {
+        "name": "riven ost",
+        "amount": {
+          "unit": "gram",
+          "value": 100
+        }
+      },
+      {
+        "name": "olivolja",
+        "amount": {
+          "unit": "MILLILITER",
+          "value": 30
+        }
+      }
+    ]
+  }
+]

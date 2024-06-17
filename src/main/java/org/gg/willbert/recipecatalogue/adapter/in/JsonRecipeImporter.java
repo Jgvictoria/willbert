@@ -27,7 +27,7 @@ public class JsonRecipeImporter {
 
         if (jsonRecipe.isPresent()) {
             List<Recipe> recipes = parseJson(jsonRecipe.get());
-            recipeService.save(recipes.getFirst());
+            recipeService.saveAll(recipes);
         }
     }
 
