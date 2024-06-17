@@ -8,9 +8,11 @@ import java.util.Scanner;
 public class ConsolePresenter {
 
     private final RecipeService recipeService;
+    private final StringInputRequester requester;
 
-    public ConsolePresenter(RecipeService recipeService) {
+    public ConsolePresenter(RecipeService recipeService, StringInputRequester requester) {
         this.recipeService = recipeService;
+        this.requester = requester;
     }
 
     public void present() {
