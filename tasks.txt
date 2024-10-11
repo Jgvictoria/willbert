@@ -1,27 +1,37 @@
-Find a recipe by name (fetch one that is stored/in memory/database)
-[X] find recipe
-[X] trigger from console and pass name
-[X] print result in console
+RECIPE CATALOG
+    Find a recipe by name (fetch one that is stored/in memory/database)
+    [X] find recipe
+    [X] trigger from console and pass name
+    [X] print result in console
 
-Add a recipe
-[X] Save recipe (Name, description, instructions (number_order, descripton),ingridient (product_name, amount))
-[X] Enter recipe through console by providing a json file
+    Add a recipe
+    [X] Save recipe (Name, description, instructions (number_order, description),ingredient (product_name, amount))
+    [X] Enter recipe through console by providing a json file
+    []  From website (scraper)
 
-Present recipe
-* show all attributes
+    Present recipe
+    * show all attributes
+    * show in Imperial or Metric system
 
-Modify a recipe
-* replace ingredients
-* modify description/name
-* update instructions
+    Modify a recipe
+    * replace ingredients
+    * modify description/name
+    * update instructions
 
-Scrape products
-* from willys
+    Share
+    * email
 
-Scrape recipe
-* from recipe website (one specific site to begin with)
+ORDER
+    Order recipe
+    * Add products to shopping cart in Willys
+    ** Present any missing products (Willys own webpage has this, show that, iframe??)
+    * Present final cart for ordering (iframe??)
 
-Order recipe
-* Add products to shopping cart in willys
-** Present any missing products (willys own webpage has this, show that, iframe??)
-* Present final cart for ordering (iframe??)
+ PRODUCT CATALOG
+    Add products
+    * from Willys (scraper)
+    * manually
+
+
+COST MANAGEMENT
+    * Recipe price history
