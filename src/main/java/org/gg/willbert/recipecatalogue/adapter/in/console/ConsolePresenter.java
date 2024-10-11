@@ -3,47 +3,58 @@ package org.gg.willbert.recipecatalogue.adapter.in.console;
 import org.gg.willbert.recipecatalogue.adapter.in.JsonRecipeImporter;
 import org.gg.willbert.recipecatalogue.application.RecipeService;
 
-import java.util.Scanner;
-
 public class ConsolePresenter {
 
     private final RecipeService recipeService;
-    private final StringInputRequester requester;
+    private final SimpleIOHandler ioHandler;
 
-    public ConsolePresenter(RecipeService recipeService, StringInputRequester requester) {
+    public ConsolePresenter(RecipeService recipeService, SimpleIOHandler ioHandler) {
         this.recipeService = recipeService;
-        this.requester = requester;
+        this.ioHandler = ioHandler;
     }
 
     public void present() {
-        Scanner scanner = new Scanner(System.in);
+        welcome();
+        UserAction action = presentAndSelectAction();
 
-        System.out.println("Welcome to Willbert!");
-        System.out.println("Find recipe (f)");
-        System.out.println("Import recipes from file (i)");
-        System.out.println("Quit (q)");
-
-        String option = scanner.nextLine();
-
-        if (option.equals("f")) {
-            System.out.println("Enter search term...");
-            String searchTerm = scanner.nextLine();
-
-            System.out.println(recipeService.getByNameContains(searchTerm));
-
-        } else if (option.equals("i")) {
-            System.out.println("Enter filename (default, recipes.json)...");
-            String filename = scanner.nextLine();
-            if (filename.isEmpty()) {
-                filename = "recipes.json";
-            }
-
-            JsonRecipeImporter jsonRecipeImporter = new JsonRecipeImporter(recipeService);
-            jsonRecipeImporter.importRecipes(filename);
+        switch (action) {
+            case f -> findRecipes();
+            case i -> importRecipes();
+            case q -> quit();
+            default -> throw new IllegalStateException("Unexpected action: " + action);
         }
+        ;
 
-        scanner.close();
+        quit(); //TODO: loop?
     }
 
+    private UserAction presentAndSelectAction() {
+        ioHandler.output(UserAction.toPrintableActions());
+        return UserAction.valueOf(ioHandler.getInput());
+    }
 
+    private void welcome() {
+        ioHandler.output("Welcome to Willbert!");
+    }
+
+    private void quit() {
+        ioHandler.close();
+    }
+
+    private void findRecipes() {
+        ioHandler.output("Enter search term...");
+        String searchTerm = ioHandler.getInput();
+        ioHandler.output(recipeService.getByNameContains(searchTerm).toString());
+    }
+
+    private void importRecipes() {
+        ioHandler.output("Enter filename (default, recipes.json)...");
+        String filename = ioHandler.getInput();
+        if (filename.isEmpty()) {
+            filename = "recipes.json";
+        }
+
+        JsonRecipeImporter jsonRecipeImporter = new JsonRecipeImporter(recipeService);
+        jsonRecipeImporter.importRecipes(filename);
+    }
 }

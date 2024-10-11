@@ -34,7 +34,7 @@ public class JsonRecipeImporter {
     private List<Recipe> parseJson(Path jsonFile) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            List<RecipeDTO> recipeDTOS = objectMapper.readValue(jsonFile.toFile(), new TypeReference<List<RecipeDTO>>() {
+            List<RecipeDTO> recipeDTOS = objectMapper.readValue(jsonFile.toFile(), new TypeReference<>() {
             });
 
             return recipeDTOS.stream().map(RecipeDTO::to).toList();
