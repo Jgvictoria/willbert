@@ -20,6 +20,14 @@ public class Amount {
         return unit;
     }
 
+    @Override
+    public String toString() {
+        return "Amount{" +
+                "value=" + value +
+                ", unit=" + unit +
+                '}';
+    }
+
     private static void requiresValueBiggerThanZero(short value) {
         if (value == 0 || value < 0) {
             throw new IllegalArgumentException("Value must be bigger than 0");

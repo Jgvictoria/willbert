@@ -21,4 +21,12 @@ public class Ingredient {
     public String getProductName() {
         return productName;
     }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "productName='" + productName + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
 }

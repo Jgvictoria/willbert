@@ -61,4 +61,14 @@ public class Recipe {
     public int hashCode() {
         return name.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", instructions=" + instructions +
+                ", ingredients=" + ingredients +
+                '}';
+    }
 }
