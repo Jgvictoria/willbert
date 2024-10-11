@@ -7,6 +7,7 @@ RECIPE CATALOG
     Add a recipe
     [X] Save recipe (Name, description, instructions (number_order, description),ingredient (product_name, amount))
     [X] Enter recipe through console by providing a json file
+  ->  []  Non-volatile persistence
     []  From website (scraper)
 
     Present recipe
